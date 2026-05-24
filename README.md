@@ -32,9 +32,11 @@ Este projeto adota uma arquitetura unificada em *monorepo* com orquestração vi
 
 3. **Acessar o sistema**
 
-- **Aplicação: https://localhost (navegador)**
+- **Aplicação: <a href="https://localhost" target="_blank" rel="noopener noreferrer">https://localhost</a> (navegador)**
 
-- **Documentação da API: https://localhost/docs (para visualizar contratos e testar endpoints)**
+- Clicar em **Avançado -> Ir para localhost (não seguro)** caso Apareça.
+
+- **Documentação da API: <a href="https://localhost/docs" target="_blank" rel="noopener noreferrer">https://localhost/docs</a> (para visualizar contratos e testar endpoints)**
 
 - ### **Aviso Importante: O arquivo .env é indispensável. Caso não esteja presente na raiz do projeto, o orquestrador falhará ao configurar serviços essenciais como Kafka e PostgreSQL. Verifique se o arquivo contém todas as variáveis de ambiente necessárias antes de executar o comando de build.**
 
@@ -54,7 +56,7 @@ Para assegurar o alinhamento entre a implementação e os requisitos de negócio
 
 - **É possível explorar interativamente os contratos, testar os esquemas de dados e validar os critérios de aceite de cada funcionalidade acessando a documentação local no link abaixo, DESDE QUE OS CONTAINERS ESTEJAM DE PÉ:**
 
-- **https://localhost/docs**
+- **<a href="https://localhost/docs" target="_blank" rel="noopener noreferrer">https://localhost/docs</a>**
 
 Esta documentação é gerada automaticamente pelo FastAPI, assegurando que o contrato exibido seja sempre uma representação fiel da implementação vigente.
 
@@ -93,7 +95,7 @@ Este guia tem por objetivo validar a integração completa entre o *front-end*, 
 ### Pré-requisitos
 
 - Sistema em execução (`docker compose up -d`)
-- Acesso ao Mailhog para validação de recebimento de e-mails em: **http://localhost:8025**
+- Acesso ao Mailhog para validação de recebimento de e-mails em: <a href="http://localhost:8025" target="_blank" rel="noopener noreferrer">http://localhost:8025</a>
 
 ### Passo a Passo do Fluxo Completo
 
@@ -101,13 +103,13 @@ Este guia tem por objetivo validar a integração completa entre o *front-end*, 
 
 | Etapa | Procedimento | Validação |
 |-------|--------------|-----------|
-| Acesso | Acesse a aplicação em **https://localhost** | — |
+| Acesso | Acesse a aplicação em <a href="https://localhost" target="_blank" rel="noopener noreferrer">https://localhost</a> | — |
 | **Cadastro do Médico APS** | Preencha o formulário de cadastro para um **médico APS** | — |
-| Processamento | Acesse **http://localhost:8025** (Mailhog) | Verifique se o *token* de confirmação foi recebido |
+| Processamento | Acesse <a href="http://localhost:8025" target="_blank" rel="noopener noreferrer">http://localhost:8025</a> (Mailhog) | Verifique se o *token* de confirmação foi recebido |
 | Confirmação | Insira o *token* no campo e confirme | Insira o *token* no campo e finalize o cadastro de um **médico APS** |
 | **Cadastro do Médico Especialista** | **Em outro navegador, ou em aba anônima, cadastre um novo usuário** |
 | Cadastro | Preencha o formulário de cadastro para um **médico Especialista** | — |
-| Processamento | Acesse **http://localhost:8025** (Mailhog) | Verifique se o *token* de confirmação foi recebido |
+| Processamento | Acesse <a href="http://localhost:8025" target="_blank" rel="noopener noreferrer">http://localhost:8025</a> (Mailhog) | Verifique se o *token* de confirmação foi recebido |
 | Confirmação | Insira o *token* no campo e confirme | Insira o *token* no campo e finalize o cadastro de um **médico Especialista** |
 
 #### 2. Autenticação e Sessão
