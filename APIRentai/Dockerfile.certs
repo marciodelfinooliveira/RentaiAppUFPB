@@ -1,0 +1,4 @@
+FROM debian:trixie
+RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+WORKDIR /root/certs
+ENTRYPOINT ["sh", "-c", "if [ ! -f /etc/nginx/ssl/localhost.pem ]; then openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/localhost-key.pem -out /etc/nginx/ssl/localhost.pem -subj '/CN=localhost' -addext 'subjectAltName=DNS:localhost,IP:127.0.0.1'; fi && chown -R 1000:1000 /etc/nginx/ssl"]

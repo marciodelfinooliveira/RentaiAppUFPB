@@ -1,0 +1,6 @@
+.env
+/logs/*
+/uploads/*
+__pycache__/
+/nginx/ssl/*
+/alembic/README
