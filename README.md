@@ -17,9 +17,9 @@ Este projeto adota uma arquitetura unificada em *monorepo* com orquestração vi
 
 2. **Configurar o ambiente**
 
-- **Copie o arquivo .env (recebido por e-mail) para o diretório raiz rentai/**.
+- ### **Copie o arquivo .env (recebido por e-mail) para o diretório raiz rentai/**
 
-- Verifique se o arquivo está nomeado exatamente como .env.
+- ### **Verifique se o arquivo está nomeado exatamente como .env. e está na raiz**
 
 3. **Subir a infraestrutura**
 
@@ -47,7 +47,7 @@ Este projeto adota uma arquitetura unificada em *monorepo* com orquestração vi
 | `docker compose stop` | Interrompe a execução do sistema. |
 | `docker compose down` | Para todos os containers, mantendo os volumes. |
 | `docker compose up -d` | Reinicia o sistema em segundo plano. |
-| `docker compose logs -f [nome_do_servico]` | Exibe logs em tempo real. de um serviço específico. |
+| `docker compose logs -f [nome_do_container]` | Exibe logs em tempo real. de um serviço específico. |
 | `docker compose down -v` | Remove containers **e volumes** de dados. |
 
 ## Documentação e Contrato de API
@@ -80,7 +80,7 @@ A IA demonstrou utilidade na resolução de problemas desde que o contexto e as 
 
 | Aspecto | Ambiente de Desenvolvimento | Ambiente de Produção |
 |---------|----------------------------|----------------------|
-| **Gestão de Certificados SSL/TLS** | Certificados autoassinados gerados automaticamente pelo container `cert-generator`, permitindo tráfego HTTPS em ambiente local. | Substituição por autoridades certificadoras reconhecidas (ex.: Let's Encrypt com Certbot), mantendo a mesma estrutura de volumes consumida pelo Nginx. |
+| **Gestão de Certificados SSL/TLS** | Certificados autoassinados gerados automaticamente pelo container `cert-generator`, permitindo tráfego HTTPS em ambiente local. | Substituição por autoridades certificadoras reconhecidas como a `Let's Encrypt` com Certbot, mantendo a mesma estrutura de volumes consumida pelo Nginx. |
 
 ### Conclusão
 
@@ -98,6 +98,44 @@ Este guia tem por objetivo validar a integração completa entre o *front-end*, 
 - Acesso ao Mailhog para validação de recebimento de e-mails em: <a href="http://localhost:8025" target="_blank" rel="noopener noreferrer">http://localhost:8025</a>
 
 ### Passo a Passo do Fluxo Completo
+
+## **Configuração Administrativa (Obrigatória)**
+
+Antes de cadastrar qualquer médico, é necessário registrar a instituição a que ele pertence no sistema.
+
+| Etapa | Procedimento | Validação |
+|-------|--------------|-----------|
+| **Login Admin** | Acesse o sistema em <a href="https://localhost" target="_blank" rel="noopener noreferrer">https://localhost</a> e faça login com `admin@rentaiapp.com` | O sistema deve autenticar o administrador com sucesso |
+| **Cadastro da Instituição** | No menu de administração, cadastre a instituição utilizando os dados e o CNPJ disponíveis | Verifique se a instituição aparece na listagem administrativa |
+
+---
+
+### Credenciais de Acesso (Admin)
+
+| Campo | Valor |
+|-------|-------|
+| E-mail | `admin@rentaiapp.com` |
+| Senha | *(conforme fornecido no arquivo `.env` disponibilizado por e-mail)* |
+
+### Exemplos para Cadastro de Instituição
+
+Utilize os dados abaixo como referência para preencher o formulário de cadastro:
+
+| Instituição | Nome | CNPJ |
+|-------------|------|------|
+| 1 | Hospital Universitário Lauro Wanderley | `SM.T5H.BNY/0001-51` |
+| 2 | UBS Geisel | `RV.2YP.VWT/0001-33` |
+
+
+---
+
+### Verificação Pós-Cadastro
+
+Após o cadastro de cada instituição, realize as seguintes verificações:
+
+1. Confirme se a instituição recém-criada aparece na listagem administrativa.
+2. Repita o processo para cada instituição que deseja registrar no sistema.
+3. **Somente após a conclusão desta etapa**, Pode deslogar-se do sistema e prosseguir para o cadastro de médicos vinculados às respectivas instituições que você escolher.
 
 #### 1. Registro de Usuário
 
