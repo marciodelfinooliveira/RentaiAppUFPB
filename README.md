@@ -54,7 +54,7 @@ Para assegurar o alinhamento entre a implementação e os requisitos de negócio
 
 - **É possível explorar interativamente os contratos, testar os esquemas de dados e validar os critérios de aceite de cada funcionalidade acessando a documentação local no link abaixo, DESDE QUE OS CONTAINERS ESTEJAM DE PÉ:**
 
-- `http://localhost/docs`
+- **https://localhost/docs**
 
 Esta documentação é gerada automaticamente pelo FastAPI, assegurando que o contrato exibido seja sempre uma representação fiel da implementação vigente.
 
@@ -80,7 +80,7 @@ A IA demonstrou utilidade na resolução de problemas desde que o contexto e as 
 |---------|----------------------------|----------------------|
 | **Gestão de Certificados SSL/TLS** | Certificados autoassinados gerados automaticamente pelo container `cert-generator`, permitindo tráfego HTTPS em ambiente local. | Substituição por autoridades certificadoras reconhecidas (ex.: Let's Encrypt com Certbot), mantendo a mesma estrutura de volumes consumida pelo Nginx. |
 
-### Conclusão de Maturidade
+### Conclusão
 
 O sistema encontra-se em um estado de maturidade avançado, a lógica de negócio, o desacoplamento via mensageria, a estratégia de *reverse proxy* e a consistência do modelo de dados por meio de SQLAlchemy/Alembic já conseguem ser suficientes para o que se espera de uma aplicação de nível corporativo.
 
@@ -93,7 +93,7 @@ Este guia tem por objetivo validar a integração completa entre o *front-end*, 
 ### Pré-requisitos
 
 - Sistema em execução (`docker compose up -d`)
-- Acesso ao Mailhog para validação de recebimento de e-mails em: `http://localhost:8025`
+- Acesso ao Mailhog para validação de recebimento de e-mails em: **http://localhost:8025**
 
 ### Passo a Passo do Fluxo Completo
 
@@ -101,13 +101,13 @@ Este guia tem por objetivo validar a integração completa entre o *front-end*, 
 
 | Etapa | Procedimento | Validação |
 |-------|--------------|-----------|
-| Acesso | Acesse a aplicação em `https://localhost` | — |
+| Acesso | Acesse a aplicação em **https://localhost** | — |
 | **Cadastro do Médico APS** | Preencha o formulário de cadastro para um **médico APS** | — |
-| Processamento | Acesse `http://localhost:8025` (Mailhog) | Verifique se o *token* de confirmação foi recebido |
+| Processamento | Acesse **http://localhost:8025** (Mailhog) | Verifique se o *token* de confirmação foi recebido |
 | Confirmação | Insira o *token* no campo e confirme | Insira o *token* no campo e finalize o cadastro de um **médico APS** |
 | **Cadastro do Médico Especialista** | **Em outro navegador, ou em aba anônima, cadastre um novo usuário** |
 | Cadastro | Preencha o formulário de cadastro para um **médico Especialista** | — |
-| Processamento | Acesse `http://localhost:8025` (Mailhog) | Verifique se o *token* de confirmação foi recebido |
+| Processamento | Acesse **http://localhost:8025** (Mailhog) | Verifique se o *token* de confirmação foi recebido |
 | Confirmação | Insira o *token* no campo e confirme | Insira o *token* no campo e finalize o cadastro de um **médico Especialista** |
 
 #### 2. Autenticação e Sessão
@@ -137,7 +137,7 @@ Este guia tem por objetivo validar a integração completa entre o *front-end*, 
 
 | Etapa | Procedimento | Validação |
 |-------|--------------|-----------|
-| Disparo | Após confirmar o agendamento, o sistema disparará um evento assíncrono | Se você estiver logado em ambos os médicos em navegadores separados, conseguirá ver a solicitação de teleconsultoria chegando para o **Médico Especialista**, e caso este o abra, conseguirá ver na tela do **Médico APS** a teleconsultoria mudando de status conforme o **Médico Especialista** a analisa em tempo real.|
+| Disparo | Após confirmar o agendamento, o sistema disparará um evento assíncrono | **Se você estiver logado em ambos os médicos em navegadores separados**, conseguirá ver a solicitação de teleconsultoria chegando para o **Médico Especialista**, e caso este o abra, conseguirá ver na tela do **Médico APS** a teleconsultoria mudando de status conforme o **Médico Especialista** a analisa em tempo real.|
 ---
 
 #### 6. Validação de Segurança (Blacklist)
@@ -212,7 +212,7 @@ O sistema foi concebido para ser resiliente, escalável e de fácil manutenção
 
 
 ### Fluxograma das Arquiteturas 
-```mermaid
+```bash
 Browser
    │  HTTPS (80→443) + WebSocket
    ▼
@@ -226,7 +226,7 @@ nginx (raiz) ──► API FastAPI (:8000)     ──► PostgreSQL
 
 #### Estrutura da Raiz
 
-```mermaid
+```bash
 rentai/
 │
 ├── APIRentai/                  # Backend FastAPI.
@@ -243,7 +243,7 @@ rentai/
 
 #### Estrutura da API
 
-```mermaid
+```bash
 APIRentai/
 │
 ├── app/
@@ -322,7 +322,7 @@ APIRentai/
 #### Estrutura do FrontEnd
 
 
-```mermaid
+```bash
 │
 ├── src/
 │   ├── api/
