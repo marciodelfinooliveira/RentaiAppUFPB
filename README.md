@@ -55,7 +55,11 @@ Este projeto adota uma arquitetura unificada em *monorepo* com orquestração vi
 - Sistema em execução (`docker compose up -d`)
 - Acesso ao Mailhog para validação de recebimento de e-mails em: <a href="http://localhost:8025" target="_blank" rel="noopener noreferrer">http://localhost:8025</a>
 
-### Passo a Passo do Fluxo Completo
+## Testando o Fluxo de Teleconsultoria
+
+Este guia tem por objetivo validar a integração completa entre o *front-end*, a API, o Redis, o banco de dados e a mensageria via Kafka.
+
+## Passo a Passo do Fluxo Completo
 
 ## **Configuração Administrativa (Obrigatória)**
 
@@ -183,10 +187,6 @@ A IA demonstrou utilidade na resolução de problemas desde que o contexto e as 
 O sistema encontra-se em um estado de maturidade avançado, a lógica de negócio, o desacoplamento via mensageria, a estratégia de *reverse proxy* e a consistência do modelo de dados por meio de SQLAlchemy/Alembic já conseguem ser suficientes para o que se espera de uma aplicação de nível corporativo.
 
 A transição para um servidor de produção resume-se, portanto, a uma mudança na infraestrutura externa (certificados validados), mantendo a camada de aplicação intacta e plenamente funcional.
-
-## Testando o Fluxo de Teleconsultoria
-
-Este guia tem por objetivo validar a integração completa entre o *front-end*, a API, o Redis, o banco de dados e a mensageria via Kafka.
 
 ## Configuração e Extensibilidade do Serviço de Validação de IA
 
