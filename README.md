@@ -50,48 +50,6 @@ Este projeto adota uma arquitetura unificada em *monorepo* com orquestração vi
 | `docker compose logs -f [nome_do_container]` | Exibe logs em tempo real. de um serviço específico. |
 | `docker compose down -v` | Remove containers **e volumes** de dados. |
 
-## Documentação e Contrato de API
-
-Para assegurar o alinhamento entre a implementação e os requisitos de negócio, foi adotado a abordagem *spec-driven*. Todo o contrato da API foi formalizado por meio do padrão OpenAPI/Swagger conjuntamente à codificação dos *endpoints*. Essa prática garantiu a consistência entre os esquemas de dados esperados pelo *front-end* e aqueles efetivamente entregues pelo *back-end*, permitindo que quaisquer alterações nos contratos de interface sejam rastreáveis e validadas em etapas precoces do desenvolvimento.
-
-- **É possível explorar interativamente os contratos, testar os esquemas de dados e validar os critérios de aceite de cada funcionalidade acessando a documentação local no link abaixo, DESDE QUE OS CONTAINERS ESTEJAM DE PÉ:**
-
-- **<a href="https://localhost/docs" target="_blank" rel="noopener noreferrer">https://localhost/docs</a>**
-
-Esta documentação é gerada automaticamente pelo FastAPI, assegurando que o contrato exibido seja sempre uma representação fiel da implementação vigente.
-
-## Ferramentas de IA utilizadas
-
-Durante o desenvolvimento, a ferramenta de inteligência artificial atuou como suporte e acelerador do processo, optei pela utilização do **Gemini** como agente de aceleração do desenvolvimento ágil de funcionalidades, empregando-o como consultor para análise de logs, depuração de conflitos e configuração de proxy entre os serviços.
-
-### Dinâmica de Trabalho
-
-A IA foi orientada por meio de *Context-Aware Prompting*, no qual foram fornecidos logs de erro e estruturas de arquivos existentes previamente a qualquer sugestão de alteração, essa abordagem garantiu a compreensão técnica do contexto do problema, bem como a compreensão das limitações impostas pelos serviços isolados antes da proposição de qualquer modificação.
-
-### Avaliação geral
-
-A IA demonstrou utilidade na resolução de problemas desde que o contexto e as limitações de sua atuação fossem claramente explicitados a fim de evitar alucinações e respostas desconexas ou que trariam atraso no desenvolvimento. Em diversas ocasiões, ela acelerou o desenvolvimento mediante análise criteriosa dos logs de erro, conseguindo identificar com boa precisão os pontos que demandavam ajustes. Como principal destaque do meu ponto de vista foi no desenvolvimento do *frontend*, área na qual ainda cometo mais erros. O suporte do Gemini foi essencial para orientar a condução da evolução do app em Vue.Js, em situações de conflitos de integração com a API, com o proxy e com o WebSocket, além de auxiliar na identificação de sintaxes incorretas causadoras de erros no JavaScript e na análise dos logs do console. Diante disso, considero sua contribuição determinante para a entrega dentro do prazo estipulado, dada a amplitude do escopo do projeto.
-
-## Limitações Conhecidas e Preparação para Produção
-
-#### O sistema foi arquitetado seguindo padrões de alta disponibilidade, segurança e escalabilidade, garantindo que a transição do ambiente de desenvolvimento para a produção seja um processo de implantação trivial, sem necessidade de refatoração estrutural.
-
-### O que diferencia este ambiente de um de produção ?
-
-| Aspecto | Ambiente de Desenvolvimento | Ambiente de Produção |
-|---------|----------------------------|----------------------|
-| **Gestão de Certificados SSL/TLS** | Certificados autoassinados gerados automaticamente pelo container `cert-generator`, permitindo tráfego HTTPS em ambiente local. | Substituição por autoridades certificadoras reconhecidas como a `Let's Encrypt` com Certbot, mantendo a mesma estrutura de volumes consumida pelo Nginx. |
-
-### Conclusão
-
-O sistema encontra-se em um estado de maturidade avançado, a lógica de negócio, o desacoplamento via mensageria, a estratégia de *reverse proxy* e a consistência do modelo de dados por meio de SQLAlchemy/Alembic já conseguem ser suficientes para o que se espera de uma aplicação de nível corporativo.
-
-A transição para um servidor de produção resume-se, portanto, a uma mudança na infraestrutura externa (certificados validados), mantendo a camada de aplicação intacta e plenamente funcional.
-
-## Testando o Fluxo de Teleconsultoria
-
-Este guia tem por objetivo validar a integração completa entre o *front-end*, a API, o Redis, o banco de dados e a mensageria via Kafka.
-
 ### Pré-requisitos
 
 - Sistema em execução (`docker compose up -d`)
@@ -188,7 +146,49 @@ Após o cadastro de cada instituição, realize as seguintes verificações:
 | Validação | Tente acessar uma rota protegida (ex.: `/api/teleconsultas/me`) usando o *token* antigo | O sistema deve retornar `401 Unauthorized`, confirmando que o *token* foi invalidado no Redis |
 ---
 
-## 3. Configuração e Extensibilidade do Serviço de Validação de IA
+## Documentação e Contrato de API
+
+Para assegurar o alinhamento entre a implementação e os requisitos de negócio, foi adotado a abordagem *spec-driven*. Todo o contrato da API foi formalizado por meio do padrão OpenAPI/Swagger conjuntamente à codificação dos *endpoints*. Essa prática garantiu a consistência entre os esquemas de dados esperados pelo *front-end* e aqueles efetivamente entregues pelo *back-end*, permitindo que quaisquer alterações nos contratos de interface sejam rastreáveis e validadas em etapas precoces do desenvolvimento.
+
+- **É possível explorar interativamente os contratos, testar os esquemas de dados e validar os critérios de aceite de cada funcionalidade acessando a documentação local no link abaixo, DESDE QUE OS CONTAINERS ESTEJAM DE PÉ:**
+
+- **<a href="https://localhost/docs" target="_blank" rel="noopener noreferrer">https://localhost/docs</a>**
+
+Esta documentação é gerada automaticamente pelo FastAPI, assegurando que o contrato exibido seja sempre uma representação fiel da implementação vigente.
+
+## Ferramentas de IA utilizadas
+
+Durante o desenvolvimento, a ferramenta de inteligência artificial atuou como suporte e acelerador do processo, optei pela utilização do **Gemini** como agente de aceleração do desenvolvimento ágil de funcionalidades, empregando-o como consultor para análise de logs, depuração de conflitos e configuração de proxy entre os serviços.
+
+### Dinâmica de Trabalho
+
+A IA foi orientada por meio de *Context-Aware Prompting*, no qual foram fornecidos logs de erro e estruturas de arquivos existentes previamente a qualquer sugestão de alteração, essa abordagem garantiu a compreensão técnica do contexto do problema, bem como a compreensão das limitações impostas pelos serviços isolados antes da proposição de qualquer modificação.
+
+### Avaliação geral
+
+A IA demonstrou utilidade na resolução de problemas desde que o contexto e as limitações de sua atuação fossem claramente explicitados a fim de evitar alucinações e respostas desconexas ou que trariam atraso no desenvolvimento. Em diversas ocasiões, ela acelerou o desenvolvimento mediante análise criteriosa dos logs de erro, conseguindo identificar com boa precisão os pontos que demandavam ajustes. Como principal destaque do meu ponto de vista foi no desenvolvimento do *frontend*, área na qual ainda cometo mais erros. O suporte do Gemini foi essencial para orientar a condução da evolução do app em Vue.Js, em situações de conflitos de integração com a API, com o proxy e com o WebSocket, além de auxiliar na identificação de sintaxes incorretas causadoras de erros no JavaScript e na análise dos logs do console. Diante disso, considero sua contribuição determinante para a entrega dentro do prazo estipulado, dada a amplitude do escopo do projeto.
+
+## Limitações Conhecidas e Preparação para Produção
+
+#### O sistema foi arquitetado seguindo padrões de alta disponibilidade, segurança e escalabilidade, garantindo que a transição do ambiente de desenvolvimento para a produção seja um processo de implantação trivial, sem necessidade de refatoração estrutural.
+
+### O que diferencia este ambiente de um de produção ?
+
+| Aspecto | Ambiente de Desenvolvimento | Ambiente de Produção |
+|---------|----------------------------|----------------------|
+| **Gestão de Certificados SSL/TLS** | Certificados autoassinados gerados automaticamente pelo container `cert-generator`, permitindo tráfego HTTPS em ambiente local. | Substituição por autoridades certificadoras reconhecidas como a `Let's Encrypt` com Certbot, mantendo a mesma estrutura de volumes consumida pelo Nginx. |
+
+### Conclusão
+
+O sistema encontra-se em um estado de maturidade avançado, a lógica de negócio, o desacoplamento via mensageria, a estratégia de *reverse proxy* e a consistência do modelo de dados por meio de SQLAlchemy/Alembic já conseguem ser suficientes para o que se espera de uma aplicação de nível corporativo.
+
+A transição para um servidor de produção resume-se, portanto, a uma mudança na infraestrutura externa (certificados validados), mantendo a camada de aplicação intacta e plenamente funcional.
+
+## Testando o Fluxo de Teleconsultoria
+
+Este guia tem por objetivo validar a integração completa entre o *front-end*, a API, o Redis, o banco de dados e a mensageria via Kafka.
+
+## Configuração e Extensibilidade do Serviço de Validação de IA
 
 O sistema de validação de arquivos (prontuários e documentos de teleconsultas) foi concebido com base nos princípios de **Injeção de Dependência** e **Desacoplamento**, permitindo que o motor de análise de confiança (IA) seja substituído ou reconfigurado sem a necessidade de alteração das regras de negócio da aplicação.
 
