@@ -270,7 +270,7 @@ nginx (raiz) ──► API FastAPI (:8000)     ──► PostgreSQL
 rentai/
 │
 ├── APIRentai/                  # Backend FastAPI.
-├── AppFrontRentai/             # Frontend VueJs 3.
+├── AppFrontRentai/             # Frontend Vue.js 3.
 ├── nginx/
 │   └── ssl/                    # Certificados TLS locais (gerados pelo cert-generator).
 │       ├── localhost.pem
